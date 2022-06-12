@@ -1,0 +1,149 @@
+O que é Git?
+Git é um sistema de controle de versão. Com ele é possível que vários desenvolvedores contribuam no desenvolvimento de um mesmo sistema sem o risco de perder arquivos ou linhas de código. Com Git é possível manter um histórico de alterações do projeto e descentralizar o processo de desenvolvimento.
+
+Por que Git?
+Git não é o único sistema de controle de versão existente, então porque ele é tão falado e necessário no universo de desenvolvimento de sistemas? Git possui uma arquitetura distribuída, isso significa que todo desenvolvedor tem uma cópia local do projeto em que está trabalhando, e que ele não precisa de acesso a internet para criar seu histórico de alterações.
+
+Além disso, sua estrutura garante que se minimize os conflitos de código quando mais de um desenvolvedor trabalha no mesmo código. Existem várias outros motivos para o sucesso do Git, mas como esse artigo é sobre o mínimo, vamos encerrar essa sessão por aqui.
+
+Os termos
+O repositório
+Um repositório é onde está armazenado o seu projeto, com todas as suas branches (calma, logo chegamos lá) e arquivos. O repositório fica armazenado em um servidor Git. Geralmente, esse servidor fica na nuvem, em serviços como bitbucket e github. Quando um desenvolvedor vai trabalhar no projeto, ele faz uma cópia local do repositório em sua máquina.
+
+Entendendo a árvore
+Quando criamos um repositório Git, criamos também uma árvore (tree). O código do projeto
+inicial é um branch (galho), e a partir dele é possível criar novos branches, cada branch criado é uma cópia exata do seu branch pai no momento da criação. A criação de novos branches normalmente ocorre quando uma nova alteração no código precisa ser realizada. De modo que as alterações que o desenvolvedor realizar em uma branch serão salvas apenas nesta branch.
+
+Commits
+Commit é outra palavra bastante utilizada no universo Git. Quando estamos trabalhando em um branch é possível realizar commits (confirmações de alterações). Quando estes commits são realizados é como se tirássemos uma foto daquela branch naquele momento, a partir de então é possível voltar naquela foto e fazer alterações a partir dela sempre que necessário.
+
+A origem
+Como mencionado anteriormente, o Git é um sistema distribuído, ou seja o desenvolvedor possuirá uma cópia local do repositório em sua máquina. Quando ele fazer alterações e commits no seu repositório essas alterações serão salvas localmente. Para que outros desenvolvedores tenham acesso às essas alterações é necessário enviá-las para a origem, que nada mais é que a cópia original armazenada no seu repositório Git.
+
+Merges ou junções
+Quando um desenvolvedor quer reproduzir as alterações de sua branch para outras branches, é necessário que ele faça a junção das branches, conhecido como merge.
+
+Workflow
+Algo que confunde muitos iniciantes em Git é o conceito de workflow, ou fluxo de trabalho. Não existe regra universal para quando um novo branch deve ser criado, quando o desenvolvedor deve realizar commits ou até mesmo realizar um merge, tudo isso é definido em conjunto pela equipe de desenvolvimento, esse conjunto de regras é chamado de workflow. Então é muito importante procurar entender o workflow da equipe em que se vai trabalhar, só assim o desenvolvedor saberá em qual branch ele deve trabalhar, em qual branch ele vai fazer merge de suas alterações e quando ele deve fazer commits e merges.
+
+Temos duas formas de obter uma cópia local de algum repositório, a primeira é quando usamos um servidor remoto, através do comando “git clone usuário@servidor:/caminho/do/repositorio”, a segunda é com o uso de um repositório local que foi anteriormente inicializado, executando o comando “git clone /caminho/do/repositório”.
+
+
+
+Após iniciar ou clonar o repositório, adicione seus arquivos nele (Working Directory). Quando terminar você pode utilizar o comando “git status” para poder ver os arquivos que foram alterados.
+
+ 
+
+
+
+Ao executar o comando “git status” ele irá acusar, em vermelho, os arquivos que não foram adicionados ao commit e apresentará a mensagem de que não há qualquer commit, porém possui arquivos que foram adicionados ou alterados para incluir.
+
+ 
+
+Iniciando um repositório no Git para iniciantes
+
+Existem duas maneiras de adicionar seus arquivos ao commit. A primeira seria um “adicionar todos os arquivos que foram adicionados ou alterados” utilizando o comando “git add .” . Já a segunda seria “git add <file>” onde “<file>” seria o arquivo, adicionando um arquivo por vez. Quando você executa esse comando, o arquivo passa do Working Directory para o Index (Stage).
+
+Iniciando um repositório no Git para iniciantes
+
+ 
+
+Em seguida você pode utilizar novamente o comando “git status” e visualizar que os arquivos adicionados ficaram verdes.
+
+Iniciando um repositório no Git para iniciantes
+
+Para poder fazer o commit dessas mudanças, você precisará executar o comando “git commit -m “comentário da alteração””. Dessa forma, os arquivos passam do Index (Stage) para o HEAD, porém ainda não para o repositório remoto.
+
+Iniciando um repositório no Git para iniciantes
+
+As alterações que foram adicionadas no commit estão no HEAD da sua cópia de trabalho local. Caso você não tenha clonado um repositório remoto existente e queira conectar o seu repositório local a um servidor, execute o comando “git remote add origin <sevidor>” em seguida “git push -u origin master”. Dessa forma, poderá enviar suas alterações para o servidor escolhido. Eu utilizei um repositório remoto, o GitHub.
+
+Iniciando um repositório no Git para iniciantes
+
+
+
+A “master” é a branch onde será enviado, pois como não usaremos outras branchs nesse artigo, utilizaremos a padrão.
+
+Por fim você pode atualizar o repositório local com a versão mais nova do repositório remoto, executando o comando “git pull”.
+
+Iniciando um repositório no Git para iniciantes
+
+Quais são os principais comandos Git?
+Antes de verificarmos quais são os principais comandos Git, é importante relembrar o conceito básico do sistema: trata-se de um controle de versão distribuído, onde é possível realizar alterações sem modificar o código fonte.
+
+Nesta seção, vamos para a parte prática de Git: os comandos. Veja abaixo quais são os mais utilizados pelos profissionais de TI.
+
+Git init
+Para começar a trabalhar com Git, você precisa inicializar um diretório Git na sua máquina local. Para isso, é necessário executar o comando “$ git init”. O comando irá criar a estrutura Git dentro do diretório em que foi executado.
+
+Git clone
+Na maioria das vezes, você irá começar a trabalhar com os arquivos de um repositório remoto já existente. Para copiar os arquivos do servidor remoto para sua máquina local, execute o comando ​“$ git clone ​https://usuario@enderecoRemoto.com/repositorio.git​”.
+
+Git fetch
+Esse é um dos comandos mais utilizados, mas que, por vezes, as pessoas não entendem o que ele faz.
+
+O comando “git fetch” traz do repositório remoto todas informações sobre ele que ainda não estão no seu repositório local. Um detalhe muito importante: o comando git fetch NÃO incorpora essas mudanças, ou seja, não realiza um merge.
+
+Quando se cria branches diretamente no servidor remoto, é necessário que você execute o comando git fetch para ter acesso a esses branches localmente. Normalmente é necessário apenas executá-lo como ​“$ git fetch”.
+
+Git checkout: trocando a sua branch
+O Git checkout é o comando utilizado para trocar a branch em que você está trabalhando. 
+
+Uma rotina comum é criar uma nova branch para trabalhar em um determinada funcionalidade, utilizando o comando fetch para buscá-la da origem e, então, usar o comando ​“$ git checkout nome-da-branch” para começar a trabalhar na sua nova branch.
+
+>> Leia também nosso conteúdo sobre ”10 linguagens de programação mais usadas no mercado de tecnologia”.
+
+Git add
+Para fazer um commit e salvar um snapshot do seu trabalho, é necessário antes adicionar suas alterações na staging area. 
+
+Este é um local de trabalho, onde você pode colocar os arquivos que realmente deseja adicionar no commit. Assim, poderá particionar melhor seu trabalho e organizar seus commits. 
+
+Para adicionar todos os arquivos alterados e novos arquivos na staging area, use o comando ​“$ git add .”​. Caso queira adicionar arquivos específicos utilize o comando ​“$ git add nome-do-arquivo.txt nome-do-arquivo2.txt”​.
+
+Agora, um detalhe muito importante: caso você deseje adicionar na staging area, além das alterações, novos arquivos e as deleções que realizou, utilize o comando ​“$ git add -A”.
+
+Git commit: salvando um snapshot
+Na prática, para se realizar um commit é necessário que você tenha alguns arquivos na sua staging area. Uma vez que os arquivos estão lá, basta utilizar o comando ​“$ git commit” para salvar a “fotografia” do seu código. 
+
+Assim, quando você executa este comando, é gerado um commit com um código identificador único. Utilize o comando “git checkout” com o código gerado para voltar naquele snapshot do seu programa.
+
+Git pull: buscando alterações remotas
+Uma vez que você fez alterações no seu código e criou seus commits, outros desenvolvedores devem ter acesso a essas alterações. Lembre que, até o momento, tudo o que você fez foi na cópia do seu repositório na máquina local.
+
+Para enviar suas alterações para a “origem”, verifique antes se o repositório remoto sofreu alterações de outras pessoas desde que você começou a trabalhar naquela branch. Caso haja alterações, traga-as para o seu código. O comando utilizado para isso é o​ “$ git pull”​.
+
+Quando você realiza um pull, o Git vai buscar as alterações de código dos outros desenvolvedores e tentar fazer o merge daquelas alterações no seu código. 
+
+Caso o Git não consiga fazer o merge automático, ele marcará as seções do código onde há conflito e você precisará juntar os código manualmente, indicando se vai utilizar as alterações que vieram da origem, as suas alterações locais, ambas, ou até mesmo mesclar as duas.
+
+Uma vez que terminar de realizar o merge, faça um git add e depois um commit para salvar essas alterações. Esse processo é um pouco traumático para muitos desenvolvedores, então muita calma na hora de realizar um pull.
+
+Se houver conflitos, não se desespere, faça o merge com calma e lembre-se: os pulls são reversíveis. Caso aconteça algum problema, seu código não está perdido, é sempre possível voltar no commit anterior ao pull.
+
+Git push: fazendo o upload
+Você realizou seu pull, agora sua branch está alinhada com a branch na origem e você finalmente pode fazer upload das suas alterações. Para fazer esse upload, use o comando ​“$ git push origin nome-da-branch”.
+
+Git merge: finalizando seu trabalho
+Uma vez que você finalizou seu trabalho num branch, é necessário fazer a junção dela com sua branch de origem para que suas alterações sejam incluídas no projeto em si. 
+
+Para realizar esse merge, antes faça um pull da branch com a qual você deseja fazer a junção para a sua, Assim, você resolverá os conflitos entre as duas. 
+
+Para fazer esse pull, utilize o comando “$ git pull branch-de-origem sua-branch”. Uma vez que as branches foram alinhadas, faça um checkout para a branch de origem com o comando ​“$ git checkout branch-de-origem” ​e, então, efetive o merge com o comando ​“$ git merge sua-branch”. 
+
+Pronto! A junção foi realizada e suas alterações já estão na branch principal.
+
+>> Veja também nosso conteúdo sobre” 6 ferramentas essenciais para DevOps”.
+
+Git stash
+Um grande ponto diferencial do Git como tecnologia de versionamento é a existência da área de stash. 
+
+Essa é uma técnica muito poderosa dos principais comandos Git, mas que poucos desenvolvedores fazem uso. Às vezes, é possível que você comece a desenvolver uma nova atividade em uma branch e, depois de algumas dezenas de linhas de código, perceba que está trabalhando na branch errada.
+
+Para contornar esta situação, você pode fazer uso da stash, que é uma área lógica do Git que pode ser utilizada para salvar alterações que ainda não se deseja commitar.
+
+Utilize o comando ​“$ git stash” ​para adicionar as alterações que você fez na área de stash. A partir de então, pode aplicar aquelas alterações em qualquer branch que quiser, fazendo um checkout para a branch na qual deseja trabalhar e utilizando o comando ​“$ git stash apply”​.
+
+Revise o conteúdo e treine seus comandos!
+Enfim, estes são os conceitos e comandos básicos para que você comece a trabalhar em uma equipe de desenvolvedores. Utilize muito essa tecnologia e treine bastante os principais comandos Git que aprendeu aqui. Acima de tudo, não se esqueça de fazer commits frequentes para ter seu trabalho salvo sempre.
+
+Se você gostou desse artigo sobre os principais comandos Git, não deixe de conferir no nosso blog outros conteúdos sobre tecnologia. Estamos sempre buscando simplificar as principais inovações tecnológicas para você!
